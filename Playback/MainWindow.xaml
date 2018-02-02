@@ -17,7 +17,7 @@
         <Button x:Name="btnPause" Content="Pause" HorizontalAlignment="Left" Margin="90,92,0,0" VerticalAlignment="Top" Width="74" IsEnabled="False" Click="btnPause_Click"/>
         <ComboBox x:Name="cbDispositivo" HorizontalAlignment="Left" Margin="249,92,0,0" VerticalAlignment="Top" Width="199"/>
         <Slider x:Name="sldvolumen" HorizontalAlignment="Left" Margin="468,61,0,0" VerticalAlignment="Top" Width="39" Orientation="Vertical" Height="124" Maximum="1" Value="0.5"
-                Thumb.DragCompleted="sldvolumen_DragCompleted"/>
+                Thumb.DragCompleted="sldvolumen_DragCompleted" ValueChanged="sldvolumen_ValueChanged_1"/>
 
     </Grid>
 </Window>

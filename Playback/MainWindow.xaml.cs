@@ -42,12 +42,12 @@ namespace Playback
 
         private void LlenarComboDispositivos()
         {
-            for (int i=0; i<WaveOut.DeviceCount; i++)
-                {
+            for (int i = 0; i < WaveOut.DeviceCount; i++)
+            {
                 var capacidades =
                  WaveOut.GetCapabilities(i);
                 cbDispositivo.Items.Add(capacidades.ProductName);
-                }
+            }
             cbDispositivo.SelectedIndex = 0;
         }
 
@@ -97,9 +97,13 @@ namespace Playback
                     output.DeviceNumber = cbDispositivo.SelectedIndex;
                     output.NumberOfBuffers = 2;
                     output.DesiredLatency = 100;
-                    output.Volume = (float)sldvolumen.Value;
 
-                    output.Init(reader);
+                    volumeprovider = new VolumeWaveProvider16(reader);
+
+                    volumeprovider.Volume = (float)sldvolumen.Value;
+
+
+                    output.Init(volumeprovider);
                     output.Play();
 
                     btnStop.IsEnabled = true;
@@ -117,7 +121,7 @@ namespace Playback
                 {
                     //Avisarle al usuario que elija un archivo
                 }
-            }        
+            }
         }
 
         private void OnPlaybackStop(object sender, StoppedEventArgs e)
@@ -170,10 +174,19 @@ namespace Playback
 
         private void sldvolumen_DragCompleted(object sender, RoutedEventArgs e)
         {
-            if (output != null)
-                {
-                output.Volume = (float)sldvolumen.Value;
-                }
+
+        }
+
+
+
+        private void sldvolumen_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (volumeprovider != null)
+            {
+                volumeprovider.Volume =
+                    (float)sldvolumen.Value;
+            }
+
         }
     }
 }
