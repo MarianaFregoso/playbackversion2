@@ -114,7 +114,7 @@ namespace Playback
                     lblPosition.Content = reader.CurrentTime.ToString().Substring(0, 8);
                     sldPosition.Maximum = reader.TotalTime.TotalSeconds;
                     sldPosition.Value = 0;
-
+                    
                     timer.Start();
                 }
                 else
