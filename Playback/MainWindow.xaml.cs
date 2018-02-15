@@ -16,6 +16,8 @@ using Microsoft.Win32;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using System.Windows.Threading;
+using System.IO;
+
 
 namespace Playback
 {
@@ -187,6 +189,66 @@ namespace Playback
                     (float)sldvolumen.Value;
             }
 
+        }
+
+
+    //Extrae del segundo 10 al 20 y lo guarda en archivo nuevo llamado cortado .mp3
+       
+        private void btnCortar_Click(object sender, RoutedEventArgs e)
+        {
+            //verififcar que hay ruta 
+            if (txtRuta.Text != null && txtRuta.Text != string.Empty)
+            {
+                var reader = 
+                    new Mp3FileReader(txtRuta.Text);
+                var writer =
+                    File.Create("Cortado.pm3");
+                var posicionInicial =
+                    TimeSpan.FromSeconds(10);
+                var posicionFinal =
+                    TimeSpan.FromSeconds(20);
+
+                reader.CurrentTime = posicionInicial;
+                while(reader.CurrentTime < posicionFinal)
+                {
+                    var frame =
+                        reader.ReadNextFrame();
+                    if (frame == null)
+                    {
+                        break;
+                    }
+                    writer.Write(frame.RawData, 0, frame.RawData.Length);
+                }
+                writer.Dispose();
+            }
+        }
+
+        //va a generar una señal con una frecuencia de 440
+        // y la guardara en un wav 
+        private void btncrearfrecuenca_Click(object sender, RoutedEventArgs e)
+        {
+            var samplerate = 44100;
+            var channalcount = 1;
+            var signalgenerator =
+                new SignalGenerator(samplerate, channalcount);
+            signalgenerator.Type = SignalGeneratorType.Sin;
+            signalgenerator.Frequency = Int32.Parse(txtfrecuencia.Text);
+            signalgenerator.Gain = 0.5;
+
+            var WaveFormat = new WaveFormat(samplerate, 16, channalcount);
+
+            var writer = new WaveFileWriter(txtnombre.Text, WaveFormat);
+
+            var muestrasporsegundo = samplerate * channalcount;
+
+            var buffer = new float[muestrasporsegundo];
+            
+            for (int i = 0; i < Int32.Parse(txtsegundos.Text); i++)
+            {
+                var muestras = signalgenerator.Read(buffer, 0, muestrasporsegundo);
+                writer.WriteSamples(buffer, 0, muestras);
+            }
+            writer.Dispose();
         }
     }
 }

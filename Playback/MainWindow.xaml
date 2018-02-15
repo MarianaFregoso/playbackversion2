@@ -18,6 +18,14 @@
         <ComboBox x:Name="cbDispositivo" HorizontalAlignment="Left" Margin="249,92,0,0" VerticalAlignment="Top" Width="199"/>
         <Slider x:Name="sldvolumen" HorizontalAlignment="Left" Margin="468,61,0,0" VerticalAlignment="Top" Width="39" Orientation="Vertical" Height="124" Maximum="1" Value="0.5"
                 Thumb.DragCompleted="sldvolumen_DragCompleted" ValueChanged="sldvolumen_ValueChanged_1"/>
+        <Button x:Name="btnCortar" Content="Cortar" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top" Width="75" Click="btnCortar_Click"/>
+        <Button x:Name="btncrearfrecuenca" Content="Crear Frecuencia" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" Width="121" Click="btncrearfrecuenca_Click"/>
+        <TextBox x:Name="txtfrecuencia" HorizontalAlignment="Left" Height="23" Margin="151,171,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="55"/>
+        <TextBox x:Name="txtsegundos" HorizontalAlignment="Left" Height="23" Margin="233,171,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="61"/>
+        <TextBox x:Name="txtnombre" HorizontalAlignment="Left" Height="23" Margin="328,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  SelectionOpacity="-1"/>
+        <Label x:Name="label" Content="Frecuencia" HorizontalAlignment="Left" Margin="148,145,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Segundos" HorizontalAlignment="Left" Margin="236,145,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Nombre" HorizontalAlignment="Left" Margin="328,145,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
