@@ -32,6 +32,8 @@ namespace Playback
         bool dragging = false;
         private VolumeWaveProvider16 volumeprovider;
 
+        SignalGenerator signalgenerator;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -249,6 +251,52 @@ namespace Playback
                 writer.WriteSamples(buffer, 0, muestras);
             }
             writer.Dispose();
+        }
+
+        private void btnoffset_Click(object sender, RoutedEventArgs e)
+        {
+            var samplerate = 44100;
+            var channelcount = 1;
+            var seconds = 10;
+            var signalgenerator = 
+                new SignalGenerator(samplerate, channelcount);
+            signalgenerator.Type = SignalGeneratorType.Sin;
+            signalgenerator.Frequency = 750;
+            signalgenerator.Gain = 0.5;
+            var offstetProvider =
+                new OffsetSampleProvider(signalgenerator);
+            offstetProvider.TakeSamples =
+                samplerate * seconds * channelcount;
+            WaveFileWriter.CreateWaveFile16("Sonidito.wav", offstetProvider);
+
+
+        }
+
+        private void btnReproduvirseñal_Click(object sender, RoutedEventArgs e)
+        {
+            var samplerate = 44100;
+            var channelcount = 1;
+            var seconds = 10;
+             signalgenerator =
+                new SignalGenerator(samplerate, channelcount);
+            signalgenerator.Type = SignalGeneratorType.Sin;
+            signalgenerator.Frequency = 750;
+            signalgenerator.Gain = 0.5;
+            var offstetProvider =
+                new OffsetSampleProvider(signalgenerator);
+            offstetProvider.TakeSamples =
+                samplerate * seconds * channelcount;
+            output = new WaveOutEvent();
+            output.Init(offstetProvider);
+            output.Play();
+        }
+
+        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(slider != null && signalgenerator != null)
+            {
+                signalgenerator.Frequency = slider.Value;
+            }
         }
     }
 }

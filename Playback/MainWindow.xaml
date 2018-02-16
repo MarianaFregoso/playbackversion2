@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Playback"
         mc:Ignorable="d"
         Title="Playback" Height="350" Width="525">
-    <Grid>
+    <Grid Margin="0,0,-19,0">
         <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnBuscar_Click"/>
         <TextBox x:Name="txtRuta" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" IsEnabled="False"/>
         <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="75" Click="btnPlay_Click"/>
@@ -26,6 +26,10 @@
         <Label x:Name="label" Content="Frecuencia" HorizontalAlignment="Left" Margin="148,145,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Segundos" HorizontalAlignment="Left" Margin="236,145,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label2" Content="Nombre" HorizontalAlignment="Left" Margin="328,145,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnoffset" Content="Genera archivo con offsetProvider" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="196" Click="btnoffset_Click"/>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnReproduvirseñal" Content="Reproducir Señal" HorizontalAlignment="Left" Margin="228,217,0,0" VerticalAlignment="Top" Width="154" Click="btnReproduvirseñal_Click"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="228,253,0,0" VerticalAlignment="Top" Width="154" Value="5000" ValueChanged="slider_ValueChanged" Maximum="20000" Minimum="20"/>
 
     </Grid>
 </Window>
