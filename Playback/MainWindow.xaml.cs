@@ -298,5 +298,91 @@ namespace Playback
                 signalgenerator.Frequency = slider.Value;
             }
         }
+
+
+
+        private void ReproducirNota(int frecuencia)
+        {
+            var sampleRate = 44100;
+            var channelCount = 1;
+            var seconds = 1;
+            signalgenerator = new SignalGenerator(sampleRate, channelCount);
+            signalgenerator.Type = SignalGeneratorType.Sin;
+            signalgenerator.Frequency = frecuencia;
+
+            var offsetProvider = new OffsetSampleProvider(signalgenerator);
+            offsetProvider.TakeSamples = sampleRate * seconds * channelCount;
+            output = new WaveOutEvent();
+            output.Init(offsetProvider);
+            output.Play();
+        }
+
+        private void btnDo5_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(523);
+        }
+
+        private void btnDoS_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(554);
+        }
+
+        private void btnRe_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(587);
+        }
+
+        private void btnReS_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(622);
+        }
+
+        private void btnMi_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(659);
+        }
+
+        private void btnFa_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(698);
+        }
+
+        private void btnFaS_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(739);
+        }
+
+        private void btnSol_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(783);
+        }
+
+        private void btnSolS_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(830);
+        }
+
+        private void btnLa_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(880);
+        }
+
+        private void btnLaS_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(932);
+        }
+
+        private void btnSi_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(987);
+        }
+
+        private void btnDo6_Click(object sender, RoutedEventArgs e)
+        {
+            ReproducirNota(1046);
+        }
     }
+
 }
+
+
